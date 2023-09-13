@@ -1,15 +1,15 @@
 import React from 'react'
 
 export default function Home() {
-    const header = {
+    const HEADER = {
         textAlign: "center"
     };
 
   return (
     <div>
-        <h2 style={header}>LogSpace</h2>
+        <h2 style={HEADER}>LogSpace</h2>
         <div>
-            <form action="">
+            <form method='POST' action='/upload' encType='multipart/form-data'>
                 <label htmlFor="title">Title: </label>
                 <br />
                 <input 
@@ -32,7 +32,9 @@ export default function Home() {
                 <br /> <br />
                 <label htmlFor="image">Want to add an image?</label>
                 <br />
-                <input type="file" id="file" name="file" />
+                <input type='file' id='image' name='image' />
+                <br /><br />
+                <input type='submit' value='Create New Post'/>
             </form>            
         </div>
     </div>
