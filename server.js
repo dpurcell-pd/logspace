@@ -55,15 +55,51 @@ APP.post('/upload', UPLOAD.single('image'), async (req, res) => {
     // console.log(req.file);
 });
 
-APP.get('/post/:id', async (req, res) => {
+APP.get('/post/:id', async (req, res) => {   
     const FOUND_POST = await POST.findById(req.params.id);    
-    const IMAGE = FOUND_POST.image;
-    res.render('Post', {
-        post: FOUND_POST,
-        image: IMAGE        
+        const IMAGE = FOUND_POST.image;
+            res.render('Post', {
+                post: FOUND_POST,
+                image: IMAGE        
+            });
+        });
+
+APP.get('/post/:id/edit', async (req, res) => { 
+    const FOUND_POST = await POST.findById(req.params.id);   
+    res.render('Edit', {
+        post: FOUND_POST
     });
 });
 
+APP.put('/post/:id', async (req, res) => {    
+    // finds post
+    const POST = await POST.findById(req.params.id);
+    
+    // checks if post exists
+    if (!POST) {
+        res.status(400);
+        throw new Error("Post not found!");
+    }
+
+    // updates existing post, creating one if none exists
+    const UPDATED_POST = await POST.findByIdAndUpdate(req.params.id, req.body, req.file, {new: true});
+    res.status(200).json(UPDATED_POST); 
+});
+
+APP.delete('/post/:id', async (req, res) => {    
+    // finds post
+    const POST = await POST.findById(req.params.id);
+    
+    // checks if post exists
+    if (!POST) {
+        res.status(400);
+        throw new Error("Post not found!");
+    }
+
+    // deletes existing post
+    await POST.findByIdAndRemove(req.params.id);
+    res.status(200).json(UPDATED_POST); 
+});
 
 APP.listen(PORT, (req, res) => {
     console.log(`Now listening on port ${PORT}.`);

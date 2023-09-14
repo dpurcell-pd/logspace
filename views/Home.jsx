@@ -35,7 +35,7 @@ export default function Home({ posts }) {
       })}
       <p>
         <a style={Object.assign({}, LINK, POSITION)} href='#top'>
-          ⬆Return to Top⬆
+          ⬆ Return to Top ⬆
         </a>
       </p>
     </div>
