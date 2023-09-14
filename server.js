@@ -2,6 +2,7 @@ require('dotenv').config();
 const EXPRESS = require('express');
 const MULTER = require('multer');
 const POST = require('./models/post');
+const USER = require('./models/user');
 const METHOD_OVERRIDE = require('method-override');
 const APP = EXPRESS();
 const PORT = 3000;
@@ -55,6 +56,12 @@ APP.post('/upload', UPLOAD.single('image'), async (req, res) => {
     });     
     res.redirect('/');   
     // console.log(req.file);
+});
+
+APP.get('/profile', (req, res) => {
+    res.render('Profile', {
+        user: USER
+    });
 });
 
 APP.get('/post/:id', async (req, res) => {   

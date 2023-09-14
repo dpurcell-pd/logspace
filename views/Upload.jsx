@@ -2,8 +2,7 @@ import React from "react";
 
 export default function Upload() {
     const HTML = {
-        backgroundImage: "url(background.jpg)",
-        brightness: "40%"    
+        backgroundImage: "url(background.jpg)",         
       };
   const HEADER = {
     textAlign: "center",
@@ -51,7 +50,7 @@ export default function Upload() {
             <br /> <br />
             <label style={TEXT} htmlFor="image">Want to add an image?</label>
             <br />
-            <input type="file" id="image" name="image" />
+            <input style={TEXT} type="file" id="image" name="image" />
             <br />
             <br />
             <input type="submit" value="Create New Post" />

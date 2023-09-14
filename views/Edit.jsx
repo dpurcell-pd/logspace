@@ -19,7 +19,7 @@ export default function Edit({ post, image }) {
   return (
     <html style={HTML}>
       <div>
-        <h2 style={HEADER}>LogSpace</h2>
+      <a href="/profile"><h2 style={HEADER}>LogSpace</h2></a>
         <div>
           <form method="POST" action={`/post/${post.id}?_method=PUT`}>
             <label style={TEXT} htmlFor="title">Title: </label>
@@ -45,7 +45,7 @@ export default function Edit({ post, image }) {
             <br /> <br />
             <label style={TEXT} htmlFor="image">Need to update your image?</label>
             <br />
-            <input type="file" id="image" name="image" />
+            <input style={TEXT} type="file" id="image" name="image" />
             <br />
             <br />
             <input type="submit" value="Update Post" />

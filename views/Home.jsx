@@ -2,8 +2,7 @@ import React from "react";
 
 export default function Home({ posts }) {
   const HTML = {
-    backgroundImage: "url(background.jpg)",
-    opacity: "10"
+    backgroundImage: "url(background.jpg)",    
   };
   const HEADER = {
     textAlign: "center",
@@ -24,7 +23,7 @@ export default function Home({ posts }) {
   return (
     <html style={HTML}>
       <div>
-        <h2 style={HEADER}>LogSpace</h2>
+        <a href="/profile"><h2 style={HEADER}>LogSpace</h2></a>
         <p>
           <a style={LINK} href="/upload">
             Create New Post

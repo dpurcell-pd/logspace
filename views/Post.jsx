@@ -2,8 +2,7 @@ import React from "react";
 
 export default function Post({ post, image }) {
   const HTML = {
-    backgroundImage: "url(/background.jpg)",
-    opacity: "0.8"
+    backgroundImage: "url(/background.jpg)",    
   };
   const HEADER = {
     textAlign: "center",
