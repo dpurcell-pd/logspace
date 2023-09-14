@@ -2,6 +2,7 @@ require('dotenv').config();
 const EXPRESS = require('express');
 const MULTER = require('multer');
 const POST = require('./models/post');
+const METHOD_OVERRIDE = require('method-override');
 const APP = EXPRESS();
 const PORT = 3000;
 
@@ -23,6 +24,7 @@ APP.engine('jsx', require('express-react-views').createEngine());
 
 APP.use(EXPRESS.static('public'));
 APP.use(EXPRESS.urlencoded({extended: false}));
+APP.use(METHOD_OVERRIDE('_method'));
 
 const STORAGE = MULTER.memoryStorage();
 const UPLOAD = MULTER({storage: STORAGE});
@@ -65,40 +67,20 @@ APP.get('/post/:id', async (req, res) => {
         });
 
 APP.get('/post/:id/edit', async (req, res) => { 
-    const FOUND_POST = await POST.findById(req.params.id);   
+    const FOUND_POST = await POST.findById(req.params.id);              
     res.render('Edit', {
-        post: FOUND_POST
+        post: FOUND_POST,       
     });
 });
 
 APP.put('/post/:id', async (req, res) => {    
-    // finds post
-    const POST = await POST.findById(req.params.id);
-    
-    // checks if post exists
-    if (!POST) {
-        res.status(400);
-        throw new Error("Post not found!");
-    }
-
-    // updates existing post, creating one if none exists
-    const UPDATED_POST = await POST.findByIdAndUpdate(req.params.id, req.body, req.file, {new: true});
-    res.status(200).json(UPDATED_POST); 
+    await POST.findByIdAndUpdate(req.params.id, req.body, req.file);    
+    res.redirect(`/post/${req.params.id}`);
 });
 
 APP.delete('/post/:id', async (req, res) => {    
-    // finds post
-    const POST = await POST.findById(req.params.id);
-    
-    // checks if post exists
-    if (!POST) {
-        res.status(400);
-        throw new Error("Post not found!");
-    }
-
-    // deletes existing post
     await POST.findByIdAndRemove(req.params.id);
-    res.status(200).json(UPDATED_POST); 
+    res.redirect('/');     
 });
 
 APP.listen(PORT, (req, res) => {

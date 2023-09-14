@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Edit({post}) {
+export default function Edit({post, image}) {
   const HEADER = {
     textAlign: 'center',
   };
@@ -13,7 +13,7 @@ export default function Edit({post}) {
     <div>
       <h2 style={HEADER}>LogSpace</h2>
       <div>
-        <form method="POST" action="/upload" encType="multipart/form-data">
+      <form method="POST" action={`/post/${post.id}?_method=PUT`} encType="multipart/form-data">  
           <label htmlFor="title">Title: </label>
           <br />
           <input

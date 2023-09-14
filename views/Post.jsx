@@ -33,13 +33,11 @@ export default function Post({ post, image }) {
       <p>{post.text}</p>
       {DISPLAY_IMAGE()}
       <br />
-      <a style={LINK} href={`/post/${post.id}/edit`}>
-        Edit Post
-      </a>{" "}
-      |{" "}
-      <a style={LINK} href={`/post/${post.id}/delete`}>
-        Delete Post
-      </a>
+      <a style={LINK} href={`/post/${post.id}/edit`}>Edit Post</a>
+      <br /> <br />
+      <form  method ="POST" action={`/post/${post.id}?_method=DELETE`}>      
+        <input type="submit" value="Delete Post" />   
+      </form>
       <br /> <br />
       <a style={LINK} href="/">
         ⬅ Back
