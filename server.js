@@ -1,7 +1,7 @@
 require('dotenv').config();
 const EXPRESS = require('express');
 const MULTER = require('multer');
-const IMAGE = require('./models/post')
+const POST = require('./models/post');
 const APP = EXPRESS();
 const PORT = 3000;
 
@@ -27,19 +27,31 @@ APP.use(EXPRESS.urlencoded({extended: false}));
 const STORAGE = MULTER.memoryStorage();
 const UPLOAD = MULTER({storage: STORAGE});
 
-APP.get('/', (req, res) => {
-    res.render('Home');
+APP.get('/', async (req, res) => {
+    const POSTS = await POST.find().sort({_id: -1});
+    res.render('Home', {posts: POSTS});    
+});
+
+APP.get('/upload', (req, res) => {
+    res.render('Upload');
 });
 
 APP.post('/upload', UPLOAD.single('image'), async (req, res) => {
-    const NEW_IMAGE = new IMAGE({
-        name: req.file.originalname,
+    const NEW_POST = new POST({
+        title: req.body.title,
+        text: req.body.text,
         image: {
-            data: req.file.buffer,
-            contentType: req.file.mimetype
+            name: req.file.originalname,
+            image: {
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            }
         }
     }); 
-    await NEW_IMAGE.save();
+    await NEW_POST.save();
+    res.redirect('Home');
+    // console.log(req.body);
+    // console.log(req.file);
 });
 
 
