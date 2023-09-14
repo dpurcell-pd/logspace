@@ -9,14 +9,6 @@ export default function Upload() {
     textDecoration: 'none'
   };
 
-//   const HANDLE_CHANGE = e => {
-//     e.preventDefault();
-//   }
-
-//   const HANDLE_SUBMIT = e => {
-//     e.preventDefault();
-//   }
-
   return (
     <div>
       <h2 style={HEADER}>LogSpace</h2>

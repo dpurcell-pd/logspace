@@ -37,20 +37,20 @@ APP.get('/upload', (req, res) => {
 });
 
 APP.post('/upload', UPLOAD.single('image'), async (req, res) => {
-    const NEW_POST = new POST({
+    const NEW_POST = await POST.create({
         title: req.body.title,
         text: req.body.text,
-        image: {
-            name: req.file.originalname,
-            image: {
-                data: req.file.buffer,
-                contentType: req.file.mimetype
-            }
-        }
+        // image: {
+        //     name: req.file.originalname,
+        //     image: {
+        //         data: req.file.buffer,
+        //         contentType: req.file.mimetype
+        //     }
+        // }
     }); 
-    await NEW_POST.save();
-    res.redirect('Home');
-    // console.log(req.body);
+    // await NEW_POST.save();
+    // res.redirect('Home');
+    console.log(NEW_POST.createdAt);
     // console.log(req.file);
 });
 
