@@ -51,14 +51,16 @@ APP.post('/upload', UPLOAD.single('image'), async (req, res) => {
             }
         }
     });     
-    res.redirect('Home');   
+    res.redirect('/');   
     // console.log(req.file);
 });
 
 APP.get('/post/:id', async (req, res) => {
-    const FOUND_POST = await POST.findById(req.params.id);
+    const FOUND_POST = await POST.findById(req.params.id);    
+    const IMAGE = FOUND_POST.image;
     res.render('Post', {
-        post: FOUND_POST
+        post: FOUND_POST,
+        image: IMAGE        
     });
 });
 
