@@ -9,20 +9,24 @@ export default function Edit({ post, image }) {
   };
   const LINK = {
     textDecoration: "none",
-    color: "white"
+    color: "white",
   };
   const TEXT = {
     color: "white",
-    textShadow: "3px 2px 3px blue", 
+    textShadow: "3px 2px 3px blue",
   };
 
   return (
     <html style={HTML}>
       <div>
-      <a href="/profile"><h2 style={HEADER}>LogSpace</h2></a>
+        <a href="/profile">
+          <h2 style={HEADER}>LogSpace</h2>
+        </a>
         <div>
           <form method="POST" action={`/post/${post.id}?_method=PUT`}>
-            <label style={TEXT} htmlFor="title">Title: </label>
+            <label style={TEXT} htmlFor="title">
+              Title:{" "}
+            </label>
             <br />
             <input
               type="text"
@@ -32,7 +36,9 @@ export default function Edit({ post, image }) {
               required
             />
             <br /> <br />
-            <label style={TEXT} htmlFor="text">Create your journal entry below:</label>
+            <label style={TEXT} htmlFor="text">
+              Create your journal entry below:
+            </label>
             <br />
             <textarea
               name="text"
@@ -43,7 +49,9 @@ export default function Edit({ post, image }) {
               required
             ></textarea>
             <br /> <br />
-            <label style={TEXT} htmlFor="image">Need to update your image?</label>
+            <label style={TEXT} htmlFor="image">
+              Need to update your image?
+            </label>
             <br />
             <input style={TEXT} type="file" id="image" name="image" />
             <br />

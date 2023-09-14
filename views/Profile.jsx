@@ -1,6 +1,8 @@
 import React from "react";
+const USER = require('../models/user');
 
-function Profile({ user }) {
+function Profile({ user }) { 
+    console.log(user);  
   const HTML = {
     backgroundImage: "url(/background.jpg)",
   };
@@ -15,7 +17,7 @@ function Profile({ user }) {
     textDecoration: "none",
     color: "white",
     listStyleType: "square",
-    textShadow: "3px 2px 3px blue", 
+    textShadow: "3px 2px 3px blue",
   };
   const TEXT = {
     color: "white",
@@ -24,7 +26,9 @@ function Profile({ user }) {
   return (
     <html style={HTML}>
       <div>
-      <a href="/profile"><h2 style={HEADER}>LogSpace</h2></a>
+        <a href="/profile">
+          <h2 style={HEADER}>LogSpace</h2>
+        </a>
         <p style={TEXT}>{user.name}</p>
         <p style={TEXT}>{user.email}</p>
         <p style={TEXT}>{user.password}</p>

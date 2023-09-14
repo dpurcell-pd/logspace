@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Post({ post, image }) {
   const HTML = {
-    backgroundImage: "url(/background.jpg)",    
+    backgroundImage: "url(/background.jpg)",
   };
   const HEADER = {
     textAlign: "center",
@@ -15,7 +15,7 @@ export default function Post({ post, image }) {
     textDecoration: "none",
     color: "white",
     listStyleType: "square",
-    textShadow: "3px 2px 3px blue", 
+    textShadow: "3px 2px 3px blue",
   };
 
   const IMAGE = {
@@ -24,7 +24,7 @@ export default function Post({ post, image }) {
   };
   const TEXT = {
     color: "white",
-    textShadow: "3px 2px 3px blue", 
+    textShadow: "3px 2px 3px blue",
   };
 
   const DISPLAY_IMAGE = () => {
