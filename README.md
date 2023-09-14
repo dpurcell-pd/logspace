@@ -1,6 +1,8 @@
+![journal_app](public\logspace.jpg)
+
 Journal App
 
-This project functions as a simple journal application that allows a user to create, edit, and view new posts from the browser. 
+This project functions as a simple journal application that allows a user to create and view new posts from the browser. 
 
 Technologies Used: 
 - HTML 
@@ -9,6 +11,11 @@ Technologies Used:
 - React
 - Node.js
 - Mongoose/MongoDB
+
+Challenges / Future Milestones
+
+- solve update functionality (isses with file upload in form)
+- incorporate controllers/router
 
 Installation instructions:
 
