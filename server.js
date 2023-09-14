@@ -29,7 +29,10 @@ const UPLOAD = MULTER({storage: STORAGE});
 
 APP.get('/', async (req, res) => {
     const POSTS = await POST.find().sort({_id: -1});
-    res.render('Home', {posts: POSTS});    
+    res.render('Home', {
+        posts: POSTS
+    });    
+    console.log(POSTS);
 });
 
 APP.get('/upload', (req, res) => {
@@ -47,16 +50,15 @@ APP.post('/upload', UPLOAD.single('image'), async (req, res) => {
                 contentType: req.file.mimetype
             }
         }
-    }); 
-    await NEW_POST.save();
-    res.redirect('Home');
-    console.log(NEW_POST.createdAt.toDateString());
+    });     
+    res.redirect('Home');   
     // console.log(req.file);
 });
 
-APP.get('/post/:id', (req, res) => {
+APP.get('/post/:id', async (req, res) => {
+    const FOUND_POST = await POST.findById(req.params.id);
     res.render('Post', {
-        post: POST[req.params.id]
+        post: FOUND_POST
     });
 });
 
