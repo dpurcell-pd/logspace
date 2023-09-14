@@ -1,4 +1,4 @@
-![journal_app](public\logspace.jpg)
+![journal_app](/public/logspace.jpg)
 
 Journal App
 
